@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+    <title>MeowMeow</title>
+    <link rel="icon" href="images_cat.png" type="imagie/x-icon">
+</head>
+
+<body onload="checkCookie()">
+
+<div style="text-align: center;">
+    <img id = "myImagie" src="gif_cat_0.gif" width="35%">
+    <p>
+        <p>Huvann có đẹp troai không?? &#128512;</p>
+        <button onclick="pic(0)" style="margin-right: 80px ;">Cóoooooo >.< </button>
+        <button onclick="pic(1)"> Không :((((( </button>
+    </p>
+</div>
+
+    <script>
+        function pic(num){
+            var x;
+            if (num==0){
+                x = "gif_cat.gif"
+            } else{
+                x = "meme.jpg"
+            }
+            document.getElementById('myImagie').src = x
+        }
+
+        function setCookie(cname, cvalue, exdays){
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" +cvalue + ";" + expires +";path=/";
+        }
+
+        function getCookie(cname){
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie)
+            let c = decodedCookie.split(';');
+            for (let i=0; i<c.length; i++){
+                while(c[i].charAt(0) == ' '){
+                    c[i] = c[i].substring(1); <!--loại bỏ khoảng trắng ở đầu nếu có-->
+                }
+                if (c[i].indexOf(name)==0){
+                    return c[i].substring(name.length, c[i].length)
+                }
+            }
+            return '';
+        }
+
+        function checkCookie(){
+            let user = getCookie("username");
+            if (user != ''){
+                alert("Welcome again "+user)
+            }
+            else{
+                user = prompt("Please enter your name:","");
+                if (user != "" && user != null){
+                    setCookie("username",user,30);
+                }
+            }
+        }
+    </script>
+
+</body>
